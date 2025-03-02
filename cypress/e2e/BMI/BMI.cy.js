@@ -74,3 +74,17 @@ it("should show an error when weight or height is zero", () => {
     "Please provide all the necessary information!×"
   );
 });
+it("input age < 2", () => {
+  cy.visit("https://practice.expandtesting.com/bmi");
+
+  cy.get("#gender").select("Female");
+  cy.get('#age')
+  cy.get("#weight").clear();
+  cy.get("#weight").type("70");
+  cy.get("#height").clear();
+  cy.get("#height").type("175");
+
+  cy.get(".btn-primary").click();
+
+  cy.get('.alert-box').should("have.text", "Please provide all the necessary information!×");
+});
